@@ -24,6 +24,8 @@
 @synthesize rightSwipeRecognizer = _rightSwipeRecognizer;
 @synthesize leftSwipeRecognizer = _leftSwipeRecognizer;
 
+@synthesize activity = _activity;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,7 +51,12 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self loadEvents];
+    [_activity startAnimating];
+    if ([self login])
+    {
+        [self loadEvents];
+    }
+    [_activity stopAnimating];
 }
 
 - (void)viewDidUnload
@@ -81,21 +88,16 @@
 }
 
 
-- (void)loadEvents
-{    
+- (BOOL)login
+{
     NSString *user = [self userAccount];
-    NSString *password = [self userPassword];
-    
-    if ([_serverConnector loginWithUser:user andPassword:password])
-    {
-        NSLog(@"Login succesful.");
-        _events = [_serverConnector loadEvents];
-    }
-    else
-    {
-        NSLog(@"Login failed.");
-    }
-    
+    NSString *password = [self userPassword];    
+    return [_serverConnector loginWithUser:user andPassword:password];
+}
+
+- (void)loadEvents
+{
+    _events = [_serverConnector loadEvents];
     [_eventTable reloadData];
 }
 
@@ -149,12 +151,13 @@
 }
 
 - (void)setStatusForEvent:(Event *)event status:(Status) status {
+    [_activity startAnimating];
     if ([_serverConnector setMyStatusForEvent:event.id to:status])
     {
         event.mystatus = status;
-        _events = [_serverConnector loadEvents];
-        [_eventTable reloadData];
+        [self loadEvents];
     }
+    [_activity stopAnimating];
 }
 
 @end
