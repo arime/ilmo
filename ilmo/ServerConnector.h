@@ -7,15 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Event.h"
 
 @interface ServerConnector : NSObject
-
-typedef enum Status : NSInteger Status;
-enum Status : NSInteger {
-    ATTENDING_YES,
-    ATTENDING_UNDECIDED,
-    ATTENDING_NO
-};
 
 -(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password;
 -(NSMutableArray*) loadEvents;

@@ -18,11 +18,6 @@
 @synthesize mystatus;
 @synthesize attendingImageView;
 
-static NSString *YES_STRING = @"yes";
-static NSString *NO_STRING = @"no";
-static NSString *UNCERTAIN_STRING = @"-";
-
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -38,13 +33,13 @@ static NSString *UNCERTAIN_STRING = @"-";
     [self.date setText:[NSString stringWithFormat:@"%@ @ %@", event.date, event.time]];
     [self.attendees setText:[NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Tulossa", nil), event.status]];
     
-    if ([event.mystatus isEqualToString:YES_STRING]) {
+    if (event.mystatus == ATTENDING_YES) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"ball_green"]];
     }
-    else if ([event.mystatus isEqualToString:NO_STRING]) {
+    else if (event.mystatus == ATTENDING_NO) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"ball_red"]];
     }
-    else if ([event.mystatus isEqualToString:UNCERTAIN_STRING]) {
+    else if (event.mystatus == ATTENDING_UNDECIDED) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"ball_grey"]];
     }
 }

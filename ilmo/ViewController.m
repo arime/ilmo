@@ -151,7 +151,8 @@
 - (void)setStatusForEvent:(Event *)event status:(Status) status {
     if ([_serverConnector setMyStatusForEvent:event.id to:status])
     {
-        event.status = status;
+        event.mystatus = status;
+        [_eventTable reloadData];
     }
 }
 

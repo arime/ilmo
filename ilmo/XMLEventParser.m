@@ -90,7 +90,7 @@ Event *currentEvent;
     }
     if ([elementname isEqualToString:@"mystatus"])
     {
-        currentEvent.mystatus = currentNodeContent;
+        currentEvent.mystatus = [self convertToStatus: currentNodeContent];
         NSLog(@"mystatus = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"mymessage"])
@@ -108,6 +108,22 @@ Event *currentEvent;
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     currentNodeContent = (NSMutableString *) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (Status) convertToStatus: (NSMutableString*) string
+{
+    if (string == @"0")
+    {
+        return ATTENDING_YES;
+    }
+    else if (string == @"1")
+    {
+        return ATTENDING_UNDECIDED;
+    }
+    else
+    {
+        return ATTENDING_NO;
+    }
 }
 
 @end
