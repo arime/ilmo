@@ -32,6 +32,7 @@
 		44F9FA7B1632C028001A958B /* ball_yellow_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F9FA731632C028001A958B /* ball_yellow_2x.png */; };
 		44F9FA7C1632C028001A958B /* ball_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F9FA741632C028001A958B /* ball_yellow.png */; };
 		44F9FA7F1632C052001A958B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9FA7E1632C052001A958B /* Event.m */; };
+		FA074D031632CF23002DC2F5 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D021632CF23002DC2F5 /* EventCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		44F9FA741632C028001A958B /* ball_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball_yellow.png; sourceTree = "<group>"; };
 		44F9FA7D1632C052001A958B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		44F9FA7E1632C052001A958B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		FA074D011632CF23002DC2F5 /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
+		FA074D021632CF23002DC2F5 /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,8 @@
 				44F9FA7E1632C052001A958B /* Event.m */,
 				44F9FA561632BE62001A958B /* XMLEventParser.h */,
 				44F9FA571632BE62001A958B /* XMLEventParser.m */,
+				FA074D011632CF23002DC2F5 /* EventCell.h */,
+				FA074D021632CF23002DC2F5 /* EventCell.m */,
 				44F9FA171632B7A0001A958B /* Supporting Files */,
 				44A56AA41632C97B000825F0 /* Settings.bundle */,
 			);
@@ -328,6 +333,7 @@
 				44F9FA271632B7A0001A958B /* ViewController.m in Sources */,
 				44F9FA621632BE62001A958B /* XMLEventParser.m in Sources */,
 				44F9FA7F1632C052001A958B /* Event.m in Sources */,
+				FA074D031632CF23002DC2F5 /* EventCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

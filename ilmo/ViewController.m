@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "XMLEventParser.h"
 #include <CommonCrypto/CommonDigest.h>
+#import "EventCell.h"
 
 @interface ViewController ()
 @property (nonatomic, retain) XMLEventParser *eventParser;
@@ -16,6 +17,7 @@
 @end
 
 @implementation ViewController
+@synthesize eventTable = _eventTable;
 
 @synthesize eventParser = _eventParser;
 @synthesize events = _events;
@@ -25,6 +27,9 @@
     [super viewDidLoad];
 
     self.title = @"Tapahtumat";
+    [_eventTable setDelegate:self];
+    [_eventTable setDataSource:self];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -35,6 +40,8 @@
 
 - (void)viewDidUnload
 {
+    [self setEventTable:nil];
+    [self setTitle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -114,6 +121,31 @@
         Event *event = (Event*)object;
         NSLog(@"Event: %@:%@", event.id, event.title);
     }
+    
+    [_eventTable reloadData];
+}
+
+#pragma mark - Tableview Delegate methods
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *eventCellIdentifier = @"EventCell";
+    EventCell *cell = (EventCell*)[_eventTable dequeueReusableCellWithIdentifier:eventCellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:eventCellIdentifier];
+        
+    }
+     
+    [cell setEvent:[_events objectAtIndex:indexPath.row]];
+    
+    [cell setBackgroundColor:[UIColor brownColor]];
+    
+    return cell;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    NSLog(@"Objects at list %u", [_events count]);
+    return [_events count];
+    
 }
 
 @end
