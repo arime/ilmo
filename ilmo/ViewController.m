@@ -33,6 +33,10 @@
     _serverConnector = [XMLServerConnector alloc];
     [_eventTable setDelegate:self];
     [_eventTable setDataSource:self];
+    
+    // Set table footer view to hide bottom cell separator for extra rows
+    [_eventTable setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)]];
+    
     _rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     [_rightSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
     
