@@ -36,7 +36,7 @@ static NSString *UNCERTAIN_STRING = @"-";
     [self.title setText:[NSString stringWithFormat:@"%@ - %@", event.title, event.location]];
     [self.location setText:event.location];
     [self.date setText:[NSString stringWithFormat:@"%@ @ %@", event.date, event.time]];
-    [self.attendees setText:event.status];
+    [self.attendees setText:[NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Tulossa", nil), event.status]];
     
     if ([event.mystatus isEqualToString:YES_STRING]) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"ball_green"]];

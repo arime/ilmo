@@ -33,6 +33,7 @@
 		44F9FA7C1632C028001A958B /* ball_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 44F9FA741632C028001A958B /* ball_yellow.png */; };
 		44F9FA7F1632C052001A958B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9FA7E1632C052001A958B /* Event.m */; };
 		FA074D031632CF23002DC2F5 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D021632CF23002DC2F5 /* EventCell.m */; };
+		FA074D211632F2B6002DC2F5 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA074D231632F2B6002DC2F5 /* Localized.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		44F9FA7E1632C052001A958B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		FA074D011632CF23002DC2F5 /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		FA074D021632CF23002DC2F5 /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
+		FA074D221632F2B6002DC2F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				44F9FA1F1632B7A0001A958B /* AppDelegate.h */,
 				44F9FA201632B7A0001A958B /* AppDelegate.m */,
 				44F9FA221632B7A0001A958B /* MainStoryboard.storyboard */,
+				FA074D231632F2B6002DC2F5 /* Localized.strings */,
 				44F9FA251632B7A0001A958B /* ViewController.h */,
 				44F9FA261632B7A0001A958B /* ViewController.m */,
 				44F9FA7D1632C052001A958B /* Event.h */,
@@ -294,6 +297,7 @@
 				44F9FA7B1632C028001A958B /* ball_yellow_2x.png in Resources */,
 				44F9FA7C1632C028001A958B /* ball_yellow.png in Resources */,
 				44A56AA51632C97B000825F0 /* Settings.bundle in Resources */,
+				FA074D211632F2B6002DC2F5 /* Localized.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +382,14 @@
 				44F9FA381632B7A1001A958B /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FA074D231632F2B6002DC2F5 /* Localized.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA074D221632F2B6002DC2F5 /* en */,
+			);
+			name = Localized.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
