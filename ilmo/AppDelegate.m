@@ -16,9 +16,10 @@
 {
     // Override point for customization after application launch.
     // Register the preference defaults early.
+    NSArray *objects = [NSArray arrayWithObjects:@"ilmotesti", @"salaIlmo", nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"account", @"password", nil];
     NSDictionary *appDefaults =
-        [NSDictionary dictionaryWithObject:[NSString stringWithString:@"ilmotesti"] forKey:@"account"];
-        [NSDictionary dictionaryWithObject:[NSString stringWithString:@"salaIlmo"] forKey:@"password"];
+        [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     return YES;
 }
