@@ -112,18 +112,24 @@ Event *currentEvent;
 
 - (Status) convertToStatus: (NSMutableString*) string
 {
-    if (string == @"0")
+    Status status = ATTENDING_NO;
+    if ([string isEqualToString: @"yes"])
     {
-        return ATTENDING_YES;
+        status = ATTENDING_YES;
     }
-    else if (string == @"1")
+    else if ([string isEqualToString:@"maybe"])
     {
-        return ATTENDING_UNDECIDED;
+        status = ATTENDING_UNDECIDED;
+    }
+    else if ([string isEqualToString:@"no"])
+    {
+        status = ATTENDING_NO;
     }
     else
     {
-        return ATTENDING_NO;
+        status = ATTENDING_NO_ANSWER;
     }
+    return status;
 }
 
 @end

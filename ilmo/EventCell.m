@@ -40,6 +40,9 @@
         [self.attendingImageView setImage:[UIImage imageNamed:@"ball_red"]];
     }
     else if (event.mystatus == ATTENDING_UNDECIDED) {
+        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_yellow"]];
+    }
+    else if (event.mystatus == ATTENDING_NO_ANSWER) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"ball_grey"]];
     }
 }

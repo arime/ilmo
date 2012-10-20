@@ -108,7 +108,7 @@
         cell = [[EventCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:eventCellIdentifier];
         
     }
-     
+    
     [cell setEvent:[_events objectAtIndex:indexPath.row]];
     
     [cell setBackgroundColor:[UIColor brownColor]];
@@ -152,6 +152,7 @@
     if ([_serverConnector setMyStatusForEvent:event.id to:status])
     {
         event.mystatus = status;
+        _events = [_serverConnector loadEvents];
         [_eventTable reloadData];
     }
 }

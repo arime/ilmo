@@ -14,7 +14,8 @@ typedef enum Status : NSInteger Status;
 enum Status : NSInteger {
     ATTENDING_YES,
     ATTENDING_UNDECIDED,
-    ATTENDING_NO
+    ATTENDING_NO,
+    ATTENDING_NO_ANSWER
 };
 
 @property (nonatomic, retain) NSString *id;
