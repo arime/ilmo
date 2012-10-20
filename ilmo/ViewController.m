@@ -21,6 +21,8 @@
 
 @synthesize serverConnector = _serverConnector;
 @synthesize events = _events;
+@synthesize rightSwipeRecognizer = _rightSwipeRecognizer;
+@synthesize leftSwipeRecognizer = _leftSwipeRecognizer;
 
 - (void)viewDidLoad
 {
@@ -29,6 +31,18 @@
     _serverConnector = [XMLServerConnector alloc];
     [_eventTable setDelegate:self];
     [_eventTable setDataSource:self];
+    _rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [_rightSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+    
+    _leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [_leftSwipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+
+    
+    [_rightSwipeRecognizer setDelegate:self];
+    [_leftSwipeRecognizer setDelegate:self];
+    
+    [self.view addGestureRecognizer:_rightSwipeRecognizer];
+    [self.view addGestureRecognizer:_leftSwipeRecognizer];
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -42,6 +56,9 @@
 {
     [self setEventTable:nil];
     [self setTitle:nil];
+    [self setRightSwipeRecognizer:nil];
+    [self setLeftSwipeRecognizer:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -103,6 +120,30 @@
     NSLog(@"Objects at list %u", [_events count]);
     return [_events count];
     
+}
+
+-(IBAction)handleSwipe:(UISwipeGestureRecognizer *)recognizer {
+    //Get location of the swipe
+    CGPoint location = [recognizer locationInView:self.eventTable];
+    
+    // if location > than the list last list item, do nothing.
+    int lastRow = [self.eventTable numberOfRowsInSection:0];
+    int rowheight = self.eventTable.rowHeight;
+    if (location.y > lastRow * rowheight) {
+        NSLog(@"Click past last item");
+        return;
+    }
+    
+    //Get the corresponding index path within the table view
+    NSIndexPath *indexPath = [self.eventTable indexPathForRowAtPoint:location];
+
+    
+    if( recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        NSLog([NSString stringWithFormat:@"Swiped right at %d", indexPath.row]);
+    }
+    else if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog([NSString stringWithFormat:@"Swiped left at %d", indexPath.row]);
+    }
 }
 
 @end

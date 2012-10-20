@@ -9,8 +9,10 @@
 #import "ServerConnector.h"
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,
+    UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *eventTable;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipeRecognizer;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipeRecognizer;
 
 @end
