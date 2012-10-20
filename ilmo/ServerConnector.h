@@ -10,8 +10,15 @@
 
 @interface ServerConnector : NSObject
 
+typedef enum Status : NSInteger Status;
+enum Status : NSInteger {
+    ATTENDING_YES,
+    ATTENDING_UNDECIDED,
+    ATTENDING_NO
+};
+
 -(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password;
 -(NSMutableArray*) loadEvents;
--(BOOL) setMyStatusForEvent: (NSString*) eventId to: (NSString*) status;
+-(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status;
 
 @end

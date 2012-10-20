@@ -24,13 +24,6 @@
 @synthesize rightSwipeRecognizer = _rightSwipeRecognizer;
 @synthesize leftSwipeRecognizer = _leftSwipeRecognizer;
 
-typedef enum Status : NSInteger Status;
-enum Status : NSInteger {
-    ATTENDING_YES,
-    ATTENDING_NO,
-    ATTENDING_UNDECIDED
-};
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -146,17 +139,20 @@ enum Status : NSInteger {
 
     Event *event = [_events objectAtIndex:indexPath.row];
     if( recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
-        NSLog([NSString stringWithFormat:@"Swiped right at %@", event.title]);
+        NSLog(@"Swiped right at %@", event.title);
         [self setStatusForEvent:event status:ATTENDING_YES];
     }
     else if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-        NSLog([NSString stringWithFormat:@"Swiped left at %@", event.title]);
+        NSLog(@"Swiped left at %@", event.title);
         [self setStatusForEvent:event status:ATTENDING_NO];
     }
 }
 
 - (void)setStatusForEvent:(Event *)event status:(Status) status {
-    NSLog([NSString stringWithFormat:@"event-> %d", status]);
-}  
+    if ([_serverConnector setMyStatusForEvent:event.id to:status])
+    {
+        event.status = status;
+    }
+}
 
 @end

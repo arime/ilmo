@@ -20,7 +20,7 @@
     return nil;
 }
 
--(BOOL) setMyStatusForEvent: (NSString*) eventId to: (NSString*) status
+-(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status
 {
     return FALSE;
 }

@@ -15,6 +15,6 @@
 
 -(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password;
 -(NSMutableArray*) loadEvents;
--(BOOL) setMyStatusForEvent: (NSString*) eventId to: (NSString*) status;
+-(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status;
 
 @end

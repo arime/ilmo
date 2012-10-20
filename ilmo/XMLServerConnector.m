@@ -57,8 +57,28 @@
     return [_eventParser loadFromURL:eventsUrl];
 }
 
--(BOOL) setMyStatusForEvent: (NSString*) eventId to: (NSString*) status
+-(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status
 {
+    NSLog(@"Request set %@ to %d", eventId, (int)status);
+
+    NSString *enrolUrlPrefix = @"http://www.osallistujat.com/ext/Enrol-vrs1.php?";
+    NSString *enrolParamSession = [NSString stringWithFormat:@"%@%@", @"session=", _sessionId];
+    NSString *enrolParamEvent = [NSString stringWithFormat:@"%@%@", @"&eventid=", eventId];
+    
+    NSString* statusString = [self statusAsString:status];
+    
+    NSString *enrolParamStatus = [NSString stringWithFormat:@"%@%@", @"&tuleeko=", statusString];
+    NSString *enrolUrl = [NSString stringWithFormat:@"%@%@%@%@", enrolUrlPrefix, enrolParamSession, enrolParamEvent, enrolParamStatus];
+    
+    NSLog(@"Enrol URL: %@", enrolUrl);
+    
+    NSURL *url = [NSURL URLWithString:enrolUrl];
+    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+    
+    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"Return value: %@", dataString);
+
     return TRUE;
 }
 
@@ -78,6 +98,19 @@
     
     return output;
     
+}
+
+-(NSString*) statusAsString:(Status) status
+{
+    switch (status) {
+        case ATTENDING_YES:
+            return @"0";
+        case ATTENDING_UNDECIDED:
+            return @"1";
+        case ATTENDING_NO:
+        default:
+            return @"2";
+    }
 }
 
 @end
