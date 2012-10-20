@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44A56AA51632C97B000825F0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44A56AA41632C97B000825F0 /* Settings.bundle */; };
+		44EAB4DA1632FD53002D0EC5 /* XMLServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EAB4D91632FD53002D0EC5 /* XMLServerConnector.m */; };
+		44EAB4DC16330890002D0EC5 /* ServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EAB4DB16330890002D0EC5 /* ServerConnector.m */; };
 		44F9FA111632B7A0001A958B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F9FA101632B7A0001A958B /* UIKit.framework */; };
 		44F9FA131632B7A0001A958B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F9FA121632B7A0001A958B /* Foundation.framework */; };
 		44F9FA151632B7A0001A958B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F9FA141632B7A0001A958B /* CoreGraphics.framework */; };
@@ -48,6 +50,10 @@
 
 /* Begin PBXFileReference section */
 		44A56AA41632C97B000825F0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		44EAB4D41632FBDF002D0EC5 /* ServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnector.h; sourceTree = "<group>"; };
+		44EAB4D81632FD53002D0EC5 /* XMLServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLServerConnector.h; sourceTree = "<group>"; };
+		44EAB4D91632FD53002D0EC5 /* XMLServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLServerConnector.m; sourceTree = "<group>"; };
+		44EAB4DB16330890002D0EC5 /* ServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConnector.m; sourceTree = "<group>"; };
 		44F9FA0C1632B7A0001A958B /* ilmo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ilmo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F9FA101632B7A0001A958B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		44F9FA121632B7A0001A958B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,6 +164,10 @@
 				FA074D021632CF23002DC2F5 /* EventCell.m */,
 				44F9FA171632B7A0001A958B /* Supporting Files */,
 				44A56AA41632C97B000825F0 /* Settings.bundle */,
+				44EAB4D41632FBDF002D0EC5 /* ServerConnector.h */,
+				44EAB4DB16330890002D0EC5 /* ServerConnector.m */,
+				44EAB4D81632FD53002D0EC5 /* XMLServerConnector.h */,
+				44EAB4D91632FD53002D0EC5 /* XMLServerConnector.m */,
 			);
 			path = ilmo;
 			sourceTree = "<group>";
@@ -338,6 +348,8 @@
 				44F9FA621632BE62001A958B /* XMLEventParser.m in Sources */,
 				44F9FA7F1632C052001A958B /* Event.m in Sources */,
 				FA074D031632CF23002DC2F5 /* EventCell.m in Sources */,
+				44EAB4DA1632FD53002D0EC5 /* XMLServerConnector.m in Sources */,
+				44EAB4DC16330890002D0EC5 /* ServerConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

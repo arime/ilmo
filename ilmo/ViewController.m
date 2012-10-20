@@ -7,26 +7,26 @@
 //
 
 #import "ViewController.h"
-#import "XMLEventParser.h"
-#include <CommonCrypto/CommonDigest.h>
 #import "EventCell.h"
+#import "XMLServerConnector.h"
 
 @interface ViewController ()
-@property (nonatomic, retain) XMLEventParser *eventParser;
+@property (nonatomic, retain) ServerConnector *serverConnector;
 @property (nonatomic, retain) NSMutableArray *events;
 @end
 
 @implementation ViewController
+
 @synthesize eventTable = _eventTable;
 
-@synthesize eventParser = _eventParser;
+@synthesize serverConnector = _serverConnector;
 @synthesize events = _events;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.title = @"Tapahtumat";
+    _serverConnector = [XMLServerConnector alloc];
     [_eventTable setDelegate:self];
     [_eventTable setDataSource:self];
     
@@ -57,69 +57,26 @@
     return userAccount;
 }
 
-- (NSString*)userPasswordHash
+- (NSString*)userPassword
 {
     NSString* password = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
-    NSString* hash = [self sha1:password];
-    return hash;
+    return password;
 }
 
--(NSString*) sha1:(NSString*)input
-{
-    const char *cstr = [input cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [NSData dataWithBytes:cstr length:input.length];
-    
-    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
-    
-    CC_SHA1(data.bytes, data.length, digest);
-    
-    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
-    
-    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
-        [output appendFormat:@"%02x", digest[i]];
-    
-    return output;
-    
-}
 
 - (void)loadEvents
 {    
     NSString *user = [self userAccount];
-    NSString *password = [self userPasswordHash];
-    NSLog(@"Account: %@", user);
-    NSLog(@"Password: %@", password);
-
-    NSString *loginUrlPrefix = @"http://www.osallistujat.com/ext/Login-vrs1.php?";
-    NSString *loginParamUser = [NSString stringWithFormat:@"%@%@", @"u=", user];
-    NSString *loginParamPassword = [NSString stringWithFormat:@"%@%@", @"&p=", password];
-    NSString *loginUrl = [NSString stringWithFormat:@"%@%@%@", loginUrlPrefix, loginParamUser, loginParamPassword];
+    NSString *password = [self userPassword];
     
-    NSURL *url = [NSURL URLWithString:loginUrl];
-    NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-
-    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *components = [dataString componentsSeparatedByString:@":"];
-    NSLog(@"Login output: %@", components);
-
-    NSString *sessionId = [components objectAtIndex:1];
-    NSString *eventsUrlPrefix = @"http://www.osallistujat.com/ext/Events-vrs1.php?session=";
-
-    NSString *eventsUrl = [NSString stringWithFormat:@"%@%@", eventsUrlPrefix, sessionId];
-
-    NSLog(@"Events URL: %@", eventsUrl);
-
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"events" ofType:@"xml"];
-    NSLog(@"Events file: %@", filePath);
-
-    _eventParser = [XMLEventParser alloc];
-
-    _events = [_eventParser loadFromURL:eventsUrl];
-    //_events = [_eventParser loadFromFile:filePath];
-
-    for (id object in _events)
+    if ([_serverConnector loginWithUser:user andPassword:password])
     {
-        Event *event = (Event*)object;
-        NSLog(@"Event: %@:%@", event.id, event.title);
+        NSLog(@"Login succesful.");
+        _events = [_serverConnector loadEvents];
+    }
+    else
+    {
+        NSLog(@"Login failed.");
     }
     
     [_eventTable reloadData];

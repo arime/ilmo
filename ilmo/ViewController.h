@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "ServerConnector.h"
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *eventTable;
 
+@property (strong, nonatomic) IBOutlet UITableView *eventTable;
 
 @end
