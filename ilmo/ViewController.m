@@ -113,8 +113,8 @@
 
     _eventParser = [XMLEventParser alloc];
 
-    //_events = [_eventParser loadFromURL:eventsUrl];
-    _events = [_eventParser loadFromFile:filePath];
+    _events = [_eventParser loadFromURL:eventsUrl];
+    //_events = [_eventParser loadFromFile:filePath];
 
     for (id object in _events)
     {
