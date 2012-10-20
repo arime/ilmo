@@ -15,6 +15,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // Register the preference defaults early.
+    NSDictionary *appDefaults =
+        [NSDictionary dictionaryWithObject:[NSString stringWithString:@"ilmotesti"] forKey:@"account"];
+        [NSDictionary dictionaryWithObject:[NSString stringWithString:@"salaIlmo"] forKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     return YES;
 }
 							
