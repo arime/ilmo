@@ -16,6 +16,12 @@
 @synthesize time;
 @synthesize attendees;
 @synthesize mystatus;
+@synthesize attendingImageView;
+
+static NSString *YES_STRING = @"yes";
+static NSString *NO_STRING = @"no";
+static NSString *UNCERTAIN_STRING = @"-";
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,12 +33,20 @@
 
 - (void)setEvent:(Event*)event {
     // Set data for event
-    [self.title setText:event.title];
+    [self.title setText:[NSString stringWithFormat:@"%@ - %@", event.title, event.location]];
     [self.location setText:event.location];
-    [self.date setText:event.date];
-    [self.time setText:event.time];
+    [self.date setText:[NSString stringWithFormat:@"%@ @ %@", event.date, event.time]];
     [self.attendees setText:event.status];
-    [self.mystatus setText:event.mystatus];
+    
+    if ([event.mystatus isEqualToString:YES_STRING]) {
+        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_green"]];
+    }
+    else if ([event.mystatus isEqualToString:NO_STRING]) {
+        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_red"]];
+    }
+    else if ([event.mystatus isEqualToString:UNCERTAIN_STRING]) {
+        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_grey"]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
