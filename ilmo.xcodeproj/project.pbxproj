@@ -36,6 +36,7 @@
 		44F9FA7F1632C052001A958B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F9FA7E1632C052001A958B /* Event.m */; };
 		FA074D031632CF23002DC2F5 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D021632CF23002DC2F5 /* EventCell.m */; };
 		FA074D211632F2B6002DC2F5 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA074D231632F2B6002DC2F5 /* Localized.strings */; };
+		FA074D2E16331C9E002DC2F5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D2D16331C9E002DC2F5 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		FA074D011632CF23002DC2F5 /* EventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCell.h; sourceTree = "<group>"; };
 		FA074D021632CF23002DC2F5 /* EventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCell.m; sourceTree = "<group>"; };
 		FA074D221632F2B6002DC2F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
+		FA074D2C16331C9E002DC2F5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FA074D2D16331C9E002DC2F5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 				44F9FA1F1632B7A0001A958B /* AppDelegate.h */,
 				44F9FA201632B7A0001A958B /* AppDelegate.m */,
 				44F9FA221632B7A0001A958B /* MainStoryboard.storyboard */,
+				FA074D2C16331C9E002DC2F5 /* LoginViewController.h */,
+				FA074D2D16331C9E002DC2F5 /* LoginViewController.m */,
 				FA074D231632F2B6002DC2F5 /* Localized.strings */,
 				44F9FA251632B7A0001A958B /* ViewController.h */,
 				44F9FA261632B7A0001A958B /* ViewController.m */,
@@ -350,6 +355,7 @@
 				FA074D031632CF23002DC2F5 /* EventCell.m in Sources */,
 				44EAB4DA1632FD53002D0EC5 /* XMLServerConnector.m in Sources */,
 				44EAB4DC16330890002D0EC5 /* ServerConnector.m in Sources */,
+				FA074D2E16331C9E002DC2F5 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,10 +461,12 @@
 		44F9FA401632B7A1001A958B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Antti Palola (RZYAP6N8WL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ilmo/ilmo-Prefix.pch";
 				INFOPLIST_FILE = "ilmo/ilmo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C6098064-0D12-4B49-A17D-E5D02EC9B6AF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -466,10 +474,12 @@
 		44F9FA411632B7A1001A958B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Antti Palola (RZYAP6N8WL)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ilmo/ilmo-Prefix.pch";
 				INFOPLIST_FILE = "ilmo/ilmo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C6098064-0D12-4B49-A17D-E5D02EC9B6AF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
