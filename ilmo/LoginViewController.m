@@ -16,6 +16,7 @@
 @implementation LoginViewController
 @synthesize userNameTextField;
 @synthesize passwordTextField;
+@synthesize backgroundImage;
 @synthesize activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +60,7 @@
 {
     [self setUserNameTextField:nil];
     [self setPasswordTextField:nil];
+    [self setBackgroundImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -93,6 +95,8 @@
 - (IBAction)loginButtonPushed:(id)sender {
     
     [self performSegueWithIdentifier:@"TableSegue" sender:self];
+    
+    // TODO: peform login to server
 }
 
 - (IBAction)backgroundPushed:(id)sender {

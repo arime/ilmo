@@ -37,6 +37,7 @@
 		FA074D031632CF23002DC2F5 /* EventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D021632CF23002DC2F5 /* EventCell.m */; };
 		FA074D211632F2B6002DC2F5 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA074D231632F2B6002DC2F5 /* Localized.strings */; };
 		FA074D2E16331C9E002DC2F5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D2D16331C9E002DC2F5 /* LoginViewController.m */; };
+		FA074D4216335F78002DC2F5 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FA074D4116335F78002DC2F5 /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		FA074D221632F2B6002DC2F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
 		FA074D2C16331C9E002DC2F5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FA074D2D16331C9E002DC2F5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FA074D4116335F78002DC2F5 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		44F9FA4D1632BE62001A958B /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				FA074D4116335F78002DC2F5 /* background.png */,
 				44F9FA6D1632C028001A958B /* ball_green_2x.png */,
 				44F9FA6E1632C028001A958B /* ball_green.png */,
 				44F9FA6F1632C028001A958B /* ball_grey_2x.png */,
@@ -313,6 +316,7 @@
 				44F9FA7C1632C028001A958B /* ball_yellow.png in Resources */,
 				44A56AA51632C97B000825F0 /* Settings.bundle in Resources */,
 				FA074D211632F2B6002DC2F5 /* Localized.strings in Resources */,
+				FA074D4216335F78002DC2F5 /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
