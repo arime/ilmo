@@ -28,9 +28,9 @@
 
 - (void)setEvent:(Event*)event {
     // Set data for event
-    [self.title setText:[NSString stringWithFormat:@"%@ - %@", event.title, event.location]];
+    [self.title setText:[NSString stringWithFormat:@"%@ @ %@", event.title, event.location]];
     [self.location setText:event.location];
-    [self.date setText:[NSString stringWithFormat:@"%@ @ %@", event.date, event.time]];
+    [self.date setText:[NSString stringWithFormat:@"%@ %@", event.date, event.time]];
     [self.attendees setText:[NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Tulossa", nil), event.status]];
     
     if (event.mystatus == ATTENDING_YES) {
