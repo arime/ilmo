@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "XMLEventParser.h"
+#include <CommonCrypto/CommonDigest.h>
 
 @interface ViewController ()
 @property (nonatomic, retain) XMLEventParser *eventParser;
@@ -43,9 +44,49 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)loadEvents
+- (NSString*)userAccount
 {
-    NSString *loginUrl = @"http://www.osallistujat.com/ext/Login-vrs1.php?u=ilmotesti&p=25978025e0899ffeece9b4d833298265f5c20689";
+    NSString* userAccount = [[NSUserDefaults standardUserDefaults] stringForKey:@"account"];
+    return userAccount;
+}
+
+- (NSString*)userPasswordHash
+{
+    NSString* password = [[NSUserDefaults standardUserDefaults] stringForKey:@"password"];
+    NSString* hash = [self sha1:password];
+    return hash;
+}
+
+-(NSString*) sha1:(NSString*)input
+{
+    const char *cstr = [input cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cstr length:input.length];
+    
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    
+    CC_SHA1(data.bytes, data.length, digest);
+    
+    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    
+    return output;
+    
+}
+
+- (void)loadEvents
+{    
+    NSString *user = [self userAccount];
+    NSString *password = [self userPasswordHash];
+    NSLog(@"Account: %@", user);
+    NSLog(@"Password: %@", password);
+
+    NSString *loginUrlPrefix = @"http://www.osallistujat.com/ext/Login-vrs1.php?";
+    NSString *loginParamUser = [NSString stringWithFormat:@"%@%@", @"u=", user];
+    NSString *loginParamPassword = [NSString stringWithFormat:@"%@%@", @"&p=", password];
+    NSString *loginUrl = [NSString stringWithFormat:@"%@%@%@", loginUrlPrefix, loginParamUser, loginParamPassword];
+    
     NSURL *url = [NSURL URLWithString:loginUrl];
     NSData *data = [[NSData alloc] initWithContentsOfURL:url];
 
