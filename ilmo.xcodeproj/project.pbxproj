@@ -465,7 +465,7 @@
 		44F9FA401632B7A1001A958B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Antti Palola (RZYAP6N8WL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ari Metsähalme (HP3P4CKUFB)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ilmo/ilmo-Prefix.pch";
 				INFOPLIST_FILE = "ilmo/ilmo-Info.plist";
@@ -478,7 +478,7 @@
 		44F9FA411632B7A1001A958B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Antti Palola (RZYAP6N8WL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ari Metsähalme (HP3P4CKUFB)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ilmo/ilmo-Prefix.pch";
 				INFOPLIST_FILE = "ilmo/ilmo-Info.plist";
