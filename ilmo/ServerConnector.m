@@ -10,6 +10,19 @@
 
 @implementation ServerConnector
 
++(id) sharedServerConnector
+{
+    static ServerConnector *connector = nil;
+    @synchronized (self)
+    {
+        if (connector == nil)
+        {
+            connector = [[self alloc] init];
+        }
+    }
+    return connector;
+}
+
 -(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password
 {
     return FALSE;

@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    _serverConnector = [XMLServerConnector alloc];
+    _serverConnector = [XMLServerConnector sharedServerConnector];
     [_eventTable setDelegate:self];
     [_eventTable setDataSource:self];
     
@@ -49,18 +49,18 @@
     
     [self.view addGestureRecognizer:_rightSwipeRecognizer];
     [self.view addGestureRecognizer:_leftSwipeRecognizer];
-    
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self 
+        selector:@selector(applicationDidBecomeActive:) 
+        name:UIApplicationDidBecomeActiveNotification 
+        object:nil];
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [_activity startAnimating];
-    if ([self login])
-    {
-        [self loadEvents];
-    }
-    [_activity stopAnimating];
 }
 
 - (void)viewDidUnload
@@ -69,7 +69,12 @@
     [self setTitle:nil];
     [self setRightSwipeRecognizer:nil];
     [self setLeftSwipeRecognizer:nil];
-    
+
+    [[NSNotificationCenter defaultCenter]
+        removeObserver:self
+        name:UIApplicationDidBecomeActiveNotification
+        object:nil];
+
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -77,6 +82,17 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [_activity startAnimating];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    if ([self login])
+    {
+        [self loadEvents];
+    }
+    [_activity stopAnimating];
 }
 
 - (NSString*)userAccount

@@ -11,6 +11,7 @@
 
 @interface ServerConnector : NSObject
 
++(id) sharedServerConnector;
 -(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password;
 -(NSMutableArray*) loadEvents;
 -(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status;

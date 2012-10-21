@@ -19,6 +19,19 @@
 @synthesize sessionId = _sessionId;
 @synthesize eventParser = _eventParser;
 
++(id) sharedServerConnector
+{
+    static XMLServerConnector *connector = nil;
+    @synchronized (self)
+    {
+        if (connector == nil)
+        {
+            connector = [[self alloc] init];
+        }
+    }
+    return connector;
+}
+
 -(BOOL) loginWithUser:(NSString *)user andPassword:(NSString *)password
 {
     NSLog(@"Request login with credentials");
