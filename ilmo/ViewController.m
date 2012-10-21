@@ -55,7 +55,9 @@
         selector:@selector(applicationDidBecomeActive:) 
         name:UIApplicationDidBecomeActiveNotification 
         object:nil];
-
+    
+    //_activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //[self.view addSubview:_activity];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -86,13 +88,15 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [_activity startAnimating];
+    //ActivityIndicatorView *indicator = [[ActivityIndicatorView alloc] init];
+    //[indicator startAnimatingOverView:self.view];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     if ([self login])
     {
         [self loadEvents];
     }
-    [_activity stopAnimating];
+    //[indicator stopAnimating];
 }
 
 - (NSString*)userAccount
@@ -117,8 +121,18 @@
 
 - (void)loadEvents
 {
-    _events = [_serverConnector loadEvents];
-    [_eventTable reloadData];
+    [_activity startAnimating];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        _events = [_serverConnector loadEvents];
+        [_eventTable reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_activity stopAnimating];
+        });
+    });
+    
 }
 
 #pragma mark - Tableview Delegate methods
@@ -171,13 +185,20 @@
 }
 
 - (void)setStatusForEvent:(Event *)event status:(Status) status {
-    [_activity startAnimating];
-    if ([_serverConnector setMyStatusForEvent:event.id to:status])
-    {
-        event.mystatus = status;
-        [self loadEvents];
-    }
-    [_activity stopAnimating];
+   [_activity startAnimating];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        
+        if ([_serverConnector setMyStatusForEvent:event.id to:status])
+        {
+            event.mystatus = status;
+            [self loadEvents];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+               [_activity stopAnimating];
+            });
+        }
+    });
 }
 
 @end

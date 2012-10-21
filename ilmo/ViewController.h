@@ -8,6 +8,7 @@
 
 #import "ServerConnector.h"
 #import <UIKit/UIKit.h>
+#import "ActivityIndicatorView.h"
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate,
     UIGestureRecognizerDelegate>
