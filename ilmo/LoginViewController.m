@@ -40,19 +40,35 @@
     [self.userNameTextField setText:username];
     [self.passwordTextField setText:password];
     
-    // Success block for login
-    /*[self login:^(void) {
-        [self.activityIndicator stopAnimating];
-        [self performSegueWithIdentifier:@"ToTableSegue" sender:self];
-        
-    }];*/
+    void (^loginErrorCallback)() = ^() {
+        // show error message
+        NSLog(@"Login error");
+    };
     
+    void (^loginSuccesCallback)() = ^()  {
+        //[self.activityIndicator stopAnimating];
+        [self performSegueWithIdentifier:@"TableSegue" sender:self];
+        
+    };
+    
+    // Success block for login
+    [self login:loginSuccesCallback errorCallback:loginErrorCallback];
 
 }
 
--login:(void (^)())successCallback {
+-(void)login:(void (^)())successCallback errorCallback:(void (^)()) errorCallback {
+    [self.activityIndicator startAnimating];
+    
     // Do async call to login
-    //[ServerConnector logIn:successCallback]
+    BOOL success = [[ServerConnector sharedInstance] loginWithUser:[self.userNameTextField text] andPassword:[self.passwordTextField text]];
+    
+    if (success) {
+        successCallback();
+    }
+    else {
+        errorCallback();
+    }
+    
 }
 
 
@@ -93,10 +109,23 @@
 }
 
 - (IBAction)loginButtonPushed:(id)sender {
+    //[self.activityIndicator startAnimating];
+    // TODO: before trying to get something, check if there internets
     
-    [self performSegueWithIdentifier:@"TableSegue" sender:self];
+    void (^loginErrorCallback)() = ^() {
+        // show error message
+        NSLog(@"Login error");
+    };
     
-    // TODO: peform login to server
+    void (^loginSuccesCallback)() = ^()  {
+        //[self.activityIndicator stopAnimating];
+        [self performSegueWithIdentifier:@"TableSegue" sender:self];
+        
+    };
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [self login:loginSuccesCallback errorCallback:loginErrorCallback];
+    });
+    
 }
 
 - (IBAction)backgroundPushed:(id)sender {
