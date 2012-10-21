@@ -51,13 +51,17 @@
     
     NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *components = [dataString componentsSeparatedByString:@":"];
+    NSString *status = [components objectAtIndex:0];
     
     _sessionId = [components objectAtIndex:1];
 
     NSLog(@"Session ID: %@", _sessionId);
     
     _eventParser = [XMLEventParser alloc];
-    return TRUE;
+
+    // On error, components at 1 is error
+    return [status isEqualToString:@"Session"];
+
 }
 
 -(NSMutableArray*) loadEvents
