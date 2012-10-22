@@ -38,6 +38,7 @@
 		FA074D211632F2B6002DC2F5 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA074D231632F2B6002DC2F5 /* Localized.strings */; };
 		FA074D2E16331C9E002DC2F5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA074D2D16331C9E002DC2F5 /* LoginViewController.m */; };
 		FA074D4216335F78002DC2F5 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = FA074D4116335F78002DC2F5 /* background.png */; };
+		FADF88B91635910500608EC8 /* ActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF88B81635910500608EC8 /* ActivityIndicatorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		FA074D2C16331C9E002DC2F5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FA074D2D16331C9E002DC2F5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FA074D4116335F78002DC2F5 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		FADF88B71635910500608EC8 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
+		FADF88B81635910500608EC8 /* ActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				44F9FA571632BE62001A958B /* XMLEventParser.m */,
 				FA074D011632CF23002DC2F5 /* EventCell.h */,
 				FA074D021632CF23002DC2F5 /* EventCell.m */,
+				FADF88B71635910500608EC8 /* ActivityIndicatorView.h */,
+				FADF88B81635910500608EC8 /* ActivityIndicatorView.m */,
 				44F9FA171632B7A0001A958B /* Supporting Files */,
 				44A56AA41632C97B000825F0 /* Settings.bundle */,
 				44EAB4D41632FBDF002D0EC5 /* ServerConnector.h */,
@@ -360,6 +365,7 @@
 				44EAB4DA1632FD53002D0EC5 /* XMLServerConnector.m in Sources */,
 				44EAB4DC16330890002D0EC5 /* ServerConnector.m in Sources */,
 				FA074D2E16331C9E002DC2F5 /* LoginViewController.m in Sources */,
+				FADF88B91635910500608EC8 /* ActivityIndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

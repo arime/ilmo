@@ -56,8 +56,7 @@
         name:UIApplicationDidBecomeActiveNotification 
         object:nil];
     
-    //_activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    //[self.view addSubview:_activity];
+    _activity = [[ActivityIndicatorView alloc] init];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -121,14 +120,14 @@
 
 - (void)loadEvents
 {
-    [_activity startAnimating];
+    [_activity startAnimatingOverView:self.view];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
         _events = [_serverConnector loadEvents];
-        [_eventTable reloadData];
-        
+                
         dispatch_async(dispatch_get_main_queue(), ^{
+            [_eventTable reloadData];
             [_activity stopAnimating];
         });
     });
@@ -185,7 +184,7 @@
 }
 
 - (void)setStatusForEvent:(Event *)event status:(Status) status {
-   [_activity startAnimating];
+   [_activity startAnimatingOverView:self.view];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         

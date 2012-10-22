@@ -148,16 +148,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" id="zwh-w0-wTo">
-                                <rect key="frame" x="142" y="400" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="mnn-uS-YGN"/>
                     <connections>
-                        <outlet property="activity" destination="zwh-w0-wTo" id="UUE-qy-ovm"/>
                         <outlet property="eventTable" destination="gjx-SA-psq" id="Aev-4W-i1g"/>
                     </connections>
                 </viewController>

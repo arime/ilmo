@@ -17,6 +17,6 @@
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *rightSwipeRecognizer;
 @property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *leftSwipeRecognizer;
 
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (strong, nonatomic) IBOutlet ActivityIndicatorView *activity;
 
 @end
