@@ -19,6 +19,12 @@
 @synthesize sessionId = _sessionId;
 @synthesize eventParser = _eventParser;
 
+enum {
+    LOGIN_RETURN_KEY,
+    LOGIN_RETURN_VALUE,
+    LOGIN_RETURN_NUM_FIELDS
+};
+
 +(id) sharedServerConnector
 {
     static XMLServerConnector *connector = nil;
@@ -52,17 +58,32 @@
     
     NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *components = [dataString componentsSeparatedByString:@":"];
-    NSString *status = [components objectAtIndex:0];
     
-    _sessionId = [components objectAtIndex:1];
-
-    NSLog(@"Session id: %@", _sessionId);
+    BOOL success = NO;
     
-    _eventParser = [XMLEventParser alloc];
+    if ([components count] == LOGIN_RETURN_NUM_FIELDS)
+    {
+        NSString *key = [components objectAtIndex:LOGIN_RETURN_KEY];
+        NSString *value = [components objectAtIndex:LOGIN_RETURN_VALUE];
 
-    // On error, components at 1 is error
-    return [status isEqualToString:@"Session"];
+        if ([key isEqualToString:@"Session"])
+        {
+            NSLog(@"Session id: %@", value);
+            _sessionId = value;
+            _eventParser = [XMLEventParser alloc];
+            success = YES;
+        }
+        else
+        {
+            NSLog(@"Login error: %@: %@", key, value);
+        }
+    }
+    else
+    {
+        NSLog(@"Login error: No data received from server");
+    }
 
+    return success;
 }
 
 -(NSMutableArray*) loadEvents
