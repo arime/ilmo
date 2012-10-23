@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
-
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -107,43 +106,50 @@
                                             <rect key="frame" x="0.0" y="0.0" width="326" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="eLO-d4-d5O">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" id="jqb-JG-Zzg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="u09-sw-urI" userLabel="titleLabel">
-                                                    <rect key="frame" x="6" y="2" width="278" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="DLQ-vo-z0M">
+                                                    <rect key="frame" x="285" y="-1" width="35" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oqh-ag-rEL">
+                                                    <rect key="frame" x="250" y="0.0" width="35" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="textColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Event Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="POh-TW-MWb">
+                                                    <rect key="frame" x="70" y="4" width="179" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Event Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cui-cH-93b">
+                                                    <rect key="frame" x="70" y="25" width="179" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="f78-7D-Gcg">
-                                                    <rect key="frame" x="6" y="24" width="278" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Event Date and Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s06-9T-sGl">
+                                                    <rect key="frame" x="70" y="45" width="179" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Attending:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="m3m-Kf-wsS">
-                                                    <rect key="frame" x="6" y="42" width="278" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" image="ball_grey.png" highlightedImage="ball_grey.png" id="jqb-JG-Zzg">
-                                                    <rect key="frame" x="280" y="19" width="34" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="attendees" destination="m3m-Kf-wsS" id="nQo-Zr-4pD"/>
+                                            <outlet property="attendees" destination="oqh-ag-rEL" id="5f8-EP-l5D"/>
                                             <outlet property="attendingImageView" destination="jqb-JG-Zzg" id="osZ-oX-tJx"/>
-                                            <outlet property="date" destination="f78-7D-Gcg" id="K1B-c8-XmU"/>
-                                            <outlet property="title" destination="u09-sw-urI" id="rcj-GE-rLW"/>
+                                            <outlet property="date" destination="s06-9T-sGl" id="6hj-oO-8XK"/>
+                                            <outlet property="location" destination="cui-cH-93b" id="9Mt-aX-o72"/>
+                                            <outlet property="title" destination="POh-TW-MWb" id="PY8-58-LLs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -163,9 +169,11 @@
     </scenes>
     <resources>
         <image name="background.png" width="1" height="480"/>
-        <image name="ball_grey.png" width="23" height="23"/>
     </resources>
     <classes>
+        <class className="ActivityIndicatorView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityIndicatorView.h"/>
+        </class>
         <class className="EventCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EventCell.h"/>
             <relationships>
@@ -182,6 +190,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backgroundPushed:"/>
+                <relationship kind="action" name="dismissKeyboard:"/>
                 <relationship kind="action" name="loginButtonPushed:"/>
                 <relationship kind="action" name="passwordTextFieldEditingDidEnd:"/>
                 <relationship kind="action" name="usernameTextFieldEditingDidEnd:"/>
@@ -195,7 +204,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="activity" candidateClass="ActivityIndicatorView"/>
                 <relationship kind="outlet" name="eventTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="leftSwipeRecognizer" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="rightSwipeRecognizer" candidateClass="UISwipeGestureRecognizer"/>
