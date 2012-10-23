@@ -37,6 +37,11 @@
 @synthesize mystatus;
 @synthesize attendingImageView;
 
+const unsigned int CELL_COLOR_DEFAULT = 0xFDFDFD;
+const unsigned int CELL_COLOR_POSITIVE = 0xFBFFF4;
+const unsigned int CELL_COLOR_NEGATIVE = 0xFFFAFB;
+const unsigned int CELL_COLOR_QUESTION = 0xF9FEFF;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     return [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -51,15 +56,19 @@
     
     if (event.mystatus == ATTENDING_YES) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"positive"]];
+        [self.contentView setBackgroundColor:[UIColor colorWithHex:CELL_COLOR_POSITIVE]];
     }
     else if (event.mystatus == ATTENDING_NO) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"negative"]];
+        [self.contentView setBackgroundColor:[UIColor colorWithHex:CELL_COLOR_NEGATIVE]];
     }
     else if (event.mystatus == ATTENDING_UNDECIDED) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"question"]];
+        [self.contentView setBackgroundColor:[UIColor colorWithHex:CELL_COLOR_QUESTION]];
     }
     else if (event.mystatus == ATTENDING_NO_ANSWER) {
         [self.attendingImageView setImage:[UIImage imageNamed:@"default"]];
+        [self.contentView setBackgroundColor:[UIColor colorWithHex:CELL_COLOR_DEFAULT]];
     }
 }
 

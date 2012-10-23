@@ -19,7 +19,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *mystatus;
 @property (nonatomic, strong) IBOutlet UIImageView *attendingImageView;
 
-
 - (void)setEvent:(Event*)event;
 
 @end
