@@ -34,16 +34,16 @@
     [self.attendees setText:event.status];
     
     if (event.mystatus == ATTENDING_YES) {
-        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_green"]];
+        [self.attendingImageView setImage:[UIImage imageNamed:@"positive"]];
     }
     else if (event.mystatus == ATTENDING_NO) {
-        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_red"]];
+        [self.attendingImageView setImage:[UIImage imageNamed:@"negative"]];
     }
     else if (event.mystatus == ATTENDING_UNDECIDED) {
-        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_yellow"]];
+        [self.attendingImageView setImage:[UIImage imageNamed:@"question"]];
     }
     else if (event.mystatus == ATTENDING_NO_ANSWER) {
-        [self.attendingImageView setImage:[UIImage imageNamed:@"ball_grey"]];
+        [self.attendingImageView setImage:[UIImage imageNamed:@"default"]];
     }
 }
 
