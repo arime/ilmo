@@ -8,6 +8,25 @@
 
 #import "EventCell.h"
 
+@interface UIColor (HexColor)
++ (UIColor *)colorWithHex:(unsigned int)hex;
+@end
+
+@implementation UIColor (HexColor)
++ (UIColor *)colorWithHex:(unsigned int)hex
+{
+    unsigned int redHex = (hex >> 16) & 0xFF;
+    unsigned int greenHex = (hex >> 8) & 0xFF;
+    unsigned int blueHex = hex & 0xFF;
+    
+    CGFloat redValue = (CGFloat)redHex / (CGFloat)0xFF;
+    CGFloat greenValue = (CGFloat)greenHex / (CGFloat)0xFF;
+    CGFloat blueValue = (CGFloat)blueHex / (CGFloat)0xFF;
+    
+    return [UIColor colorWithRed:redValue green:greenValue blue:blueValue alpha:1];
+}
+@end
+
 @implementation EventCell
 
 @synthesize title;
@@ -20,10 +39,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-    }
-    return self;
+    return [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 }
 
 - (void)setEvent:(Event*)event {
