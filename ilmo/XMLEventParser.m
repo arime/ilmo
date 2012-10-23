@@ -42,7 +42,6 @@ Event *currentEvent;
     if ([elementname isEqualToString:@"event"])
     {
         currentEvent = [Event alloc];
-        NSLog(@"<event>");
     }
 }
 
@@ -51,57 +50,46 @@ Event *currentEvent;
     if ([elementname isEqualToString:@"id"])
     {
         currentEvent.id = currentNodeContent;
-        NSLog(@"id = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"title"])
     {
         currentEvent.title = currentNodeContent;
-        NSLog(@"title = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"team"])
     {
         currentEvent.team = currentNodeContent;
-        NSLog(@"team = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"date"])
     {
         currentEvent.date = currentNodeContent;
-        NSLog(@"date = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"time"])
     {
         currentEvent.time = currentNodeContent;
-        NSLog(@"time = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"location"])
     {
         currentEvent.location = currentNodeContent;
-        NSLog(@"location = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"additional_info"])
     {
         currentEvent.additional_info = currentNodeContent;
-        NSLog(@"additional_info = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"status"])
     {
         currentEvent.status = currentNodeContent;
-        NSLog(@"status = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"mystatus"])
     {
         currentEvent.mystatus = [self convertToStatus: currentNodeContent];
-        NSLog(@"mystatus = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"mymessage"])
     {
         currentEvent.mymessage = currentNodeContent;
-        NSLog(@"mymessage = %@", currentNodeContent);
     }
     if ([elementname isEqualToString:@"event"])
     {
         [_events addObject:currentEvent];
-        NSLog(@"</event>");
     }
 }
 

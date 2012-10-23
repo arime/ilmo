@@ -34,17 +34,18 @@
 
 -(BOOL) loginWithUser:(NSString *)user andPassword:(NSString *)password
 {
-    NSLog(@"Request login with credentials");
     NSLog(@"Account: %@", user);
     
     NSString *loginUrlPrefix = @"http://www.osallistujat.com/ext/Login-vrs1.php?";
     NSString *loginParamUser = [NSString stringWithFormat:@"%@%@", @"u=", user];
     NSString *passwordHash = [self sha1:password];
     
-    NSLog(@"Password: %@", passwordHash);
+    NSLog(@"Password hash: %@", passwordHash);
 
     NSString *loginParamPassword = [NSString stringWithFormat:@"%@%@", @"&p=", passwordHash];
     NSString *loginUrl = [NSString stringWithFormat:@"%@%@%@", loginUrlPrefix, loginParamUser, loginParamPassword];
+
+    NSLog(@"Login url: %@", loginUrl);
 
     NSURL *url = [NSURL URLWithString:loginUrl];
     NSData *data = [[NSData alloc] initWithContentsOfURL:url];
@@ -55,7 +56,7 @@
     
     _sessionId = [components objectAtIndex:1];
 
-    NSLog(@"Session ID: %@", _sessionId);
+    NSLog(@"Session id: %@", _sessionId);
     
     _eventParser = [XMLEventParser alloc];
 
@@ -69,9 +70,10 @@
     NSString *eventsUrlPrefix = @"http://www.osallistujat.com/ext/Events-vrs1.php?session=";
     NSString *eventsUrl = [NSString stringWithFormat:@"%@%@", eventsUrlPrefix, _sessionId];
     
-    NSLog(@"Events URL: %@", eventsUrl);
-        
-    return [_eventParser loadFromURL:eventsUrl];
+    NSLog(@"Events url: %@", eventsUrl);
+
+    NSMutableArray *events = [_eventParser loadFromURL:eventsUrl];
+    return events;
 }
 
 -(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status

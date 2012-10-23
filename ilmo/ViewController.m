@@ -152,7 +152,6 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSLog(@"Objects at list %u", [_events count]);
     return [_events count];
     
 }
