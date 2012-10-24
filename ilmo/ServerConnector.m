@@ -23,7 +23,7 @@
     return connector;
 }
 
--(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password
+-(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password withCallback:(void(^)(BOOL))handler
 {
     return FALSE;
 }

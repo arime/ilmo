@@ -8,7 +8,7 @@
 
 #import "XMLServerConnector.h"
 #import "XMLEventParser.h"
-#include <CommonCrypto/CommonDigest.h>
+#import "Utils.h"
 
 @interface XMLServerConnector ()
 @property (nonatomic, retain) XMLEventParser *eventParser;
@@ -38,13 +38,13 @@ enum {
     return connector;
 }
 
--(BOOL) loginWithUser:(NSString *)user andPassword:(NSString *)password
+-(BOOL) loginWithUser:(NSString *)user andPassword:(NSString *)password withCallback:(void(^)(BOOL))handler
 {
     NSLog(@"Account: %@", user);
     
     NSString *loginUrlPrefix = @"http://www.osallistujat.com/ext/Login-vrs1.php?";
     NSString *loginParamUser = [NSString stringWithFormat:@"%@%@", @"u=", user];
-    NSString *passwordHash = [self sha1:password];
+    NSString *passwordHash = [Utils sha1:password];
     
     NSLog(@"Password hash: %@", passwordHash);
 
@@ -122,23 +122,7 @@ enum {
     return TRUE;
 }
 
--(NSString*) sha1:(NSString*)input
-{
-    const char *cstr = [input cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [NSData dataWithBytes:cstr length:input.length];
-    
-    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
-    
-    CC_SHA1(data.bytes, data.length, digest);
-    
-    NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
-    
-    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
-        [output appendFormat:@"%02x", digest[i]];
-    
-    return output;
-    
-}
+
 
 -(NSString*) statusAsString:(Status) status
 {

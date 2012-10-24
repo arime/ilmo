@@ -8,10 +8,11 @@
 
 #import "ViewController.h"
 #import "EventCell.h"
-#import "XMLServerConnector.h"
+//#import "XMLServerConnector.h"
+#import "JSONServerConnector.h"
 
 @interface ViewController ()
-@property (nonatomic, retain) ServerConnector *serverConnector;
+@property (nonatomic, retain) JSONServerConnector *serverConnector;
 @property (nonatomic, retain) NSMutableArray *events;
 @end
 
@@ -30,7 +31,7 @@
 {
     [super viewDidLoad];
 
-    _serverConnector = [XMLServerConnector sharedServerConnector];
+    _serverConnector = [JSONServerConnector sharedServerConnector];
     [_eventTable setDelegate:self];
     [_eventTable setDataSource:self];
     
@@ -87,15 +88,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    //ActivityIndicatorView *indicator = [[ActivityIndicatorView alloc] init];
-    //[indicator startAnimatingOverView:self.view];
-    
     [[NSUserDefaults standardUserDefaults] synchronize];
-    if ([self login])
-    {
-        [self loadEvents];
-    }
-    //[indicator stopAnimating];
+    NSString *user = [self userAccount];
+    NSString *password = [self userPassword];
+    [_serverConnector loginWithUser:user password:password andCallback:^(BOOL success){
+        NSLog(@"Login result: %d", success);
+        if (success)
+        {
+            [self loadEvents];
+        }
+    }];
 }
 
 - (NSString*)userAccount
@@ -111,27 +113,20 @@
 }
 
 
-- (BOOL)login
-{
-    NSString *user = [self userAccount];
-    NSString *password = [self userPassword];    
-    return [_serverConnector loginWithUser:user andPassword:password];
-}
-
 - (void)loadEvents
 {
     [_activity startAnimatingOverView:self.view];
-    
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
-        _events = [_serverConnector loadEvents];
-                
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_eventTable reloadData];
-            [_activity stopAnimating];
-        });
+        [_serverConnector loadEventsWithCallback:^(NSMutableArray *events){
+            NSLog(@"Loaded events: %d", [events count]);
+            _events = events;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_eventTable reloadData];
+                [_activity stopAnimating];
+            });
+        }];
     });
-    
 }
 
 #pragma mark - Tableview Delegate methods
@@ -183,19 +178,18 @@
 }
 
 - (void)setStatusForEvent:(Event *)event status:(Status) status {
-   [_activity startAnimatingOverView:self.view];
+    NSLog(@"Request set status for event %@ to %d", [event id], status);
+    [_activity startAnimatingOverView:self.view];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         
-        if ([_serverConnector setMyStatusForEvent:event.id to:status])
-        {
-            event.mystatus = status;
-            [self loadEvents];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-               [_activity stopAnimating];
-            });
-        }
+        [_serverConnector setStatusForEvent:event.id to:status withCallback:^(BOOL result) {
+            NSLog(@"Set status result: %d", result);
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Set status complete");
+            [_activity stopAnimating];
+        });
     });
 }
 

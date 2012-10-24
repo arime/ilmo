@@ -60,7 +60,7 @@
     [self.activityIndicator startAnimating];
     
     // Do async call to login
-    BOOL success = [[ServerConnector sharedServerConnector] loginWithUser:[self.userNameTextField text] andPassword:[self.passwordTextField text]];
+    BOOL success = [[ServerConnector sharedServerConnector] loginWithUser:[self.userNameTextField text] andPassword:[self.passwordTextField text] withCallback:nil];
     
     if (success) {
         successCallback();

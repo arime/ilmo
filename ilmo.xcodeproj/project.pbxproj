@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		440A0ED0163CFA9400E7FB5B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A0ECF163CFA9400E7FB5B /* User.m */; };
+		440A0ED4163D8DC800E7FB5B /* ServerResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A0ED3163D8DC800E7FB5B /* ServerResponseHandler.m */; };
 		44A56AA51632C97B000825F0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44A56AA41632C97B000825F0 /* Settings.bundle */; };
 		44CC0B051636F2B60099E39F /* attendees.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B041636F2B60099E39F /* attendees.png */; };
 		44CC0B0B1636F3D10099E39F /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B071636F3D10099E39F /* default.png */; };
 		44CC0B0C1636F3D10099E39F /* negative.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B081636F3D10099E39F /* negative.png */; };
 		44CC0B0D1636F3D10099E39F /* positive.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B091636F3D10099E39F /* positive.png */; };
 		44CC0B0E1636F3D10099E39F /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B0A1636F3D10099E39F /* question.png */; };
+		44CC0B1516386B1C0099E39F /* JSONServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC0B1416386B1C0099E39F /* JSONServerConnector.m */; };
+		44CC0B1B163C60FF0099E39F /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC0B1A163C60FF0099E39F /* Utils.m */; };
+		44CC0B1E163C7F6D0099E39F /* LoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC0B1D163C7F6D0099E39F /* LoginHandler.m */; };
 		44EAB4DA1632FD53002D0EC5 /* XMLServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EAB4D91632FD53002D0EC5 /* XMLServerConnector.m */; };
 		44EAB4DC16330890002D0EC5 /* ServerConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EAB4DB16330890002D0EC5 /* ServerConnector.m */; };
 		44F9FA111632B7A0001A958B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F9FA101632B7A0001A958B /* UIKit.framework */; };
@@ -57,12 +62,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		440A0ECE163CFA9400E7FB5B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		440A0ECF163CFA9400E7FB5B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		440A0ED2163D8DC800E7FB5B /* ServerResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponseHandler.h; sourceTree = "<group>"; };
+		440A0ED3163D8DC800E7FB5B /* ServerResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseHandler.m; sourceTree = "<group>"; };
 		44A56AA41632C97B000825F0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		44CC0B041636F2B60099E39F /* attendees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendees.png; sourceTree = "<group>"; };
 		44CC0B071636F3D10099E39F /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		44CC0B081636F3D10099E39F /* negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = negative.png; sourceTree = "<group>"; };
 		44CC0B091636F3D10099E39F /* positive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = positive.png; sourceTree = "<group>"; };
 		44CC0B0A1636F3D10099E39F /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
+		44CC0B1316386B1C0099E39F /* JSONServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONServerConnector.h; sourceTree = "<group>"; };
+		44CC0B1416386B1C0099E39F /* JSONServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONServerConnector.m; sourceTree = "<group>"; };
+		44CC0B19163C60FF0099E39F /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		44CC0B1A163C60FF0099E39F /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		44CC0B1C163C7F6C0099E39F /* LoginHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHandler.h; sourceTree = "<group>"; };
+		44CC0B1D163C7F6D0099E39F /* LoginHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHandler.m; sourceTree = "<group>"; };
 		44EAB4D41632FBDF002D0EC5 /* ServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConnector.h; sourceTree = "<group>"; };
 		44EAB4D81632FD53002D0EC5 /* XMLServerConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLServerConnector.h; sourceTree = "<group>"; };
 		44EAB4D91632FD53002D0EC5 /* XMLServerConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLServerConnector.m; sourceTree = "<group>"; };
@@ -190,6 +205,16 @@
 				44EAB4DB16330890002D0EC5 /* ServerConnector.m */,
 				44EAB4D81632FD53002D0EC5 /* XMLServerConnector.h */,
 				44EAB4D91632FD53002D0EC5 /* XMLServerConnector.m */,
+				44CC0B1316386B1C0099E39F /* JSONServerConnector.h */,
+				44CC0B1416386B1C0099E39F /* JSONServerConnector.m */,
+				44CC0B19163C60FF0099E39F /* Utils.h */,
+				44CC0B1A163C60FF0099E39F /* Utils.m */,
+				44CC0B1C163C7F6C0099E39F /* LoginHandler.h */,
+				44CC0B1D163C7F6D0099E39F /* LoginHandler.m */,
+				440A0ECE163CFA9400E7FB5B /* User.h */,
+				440A0ECF163CFA9400E7FB5B /* User.m */,
+				440A0ED2163D8DC800E7FB5B /* ServerResponseHandler.h */,
+				440A0ED3163D8DC800E7FB5B /* ServerResponseHandler.m */,
 			);
 			path = ilmo;
 			sourceTree = "<group>";
@@ -386,6 +411,11 @@
 				44EAB4DC16330890002D0EC5 /* ServerConnector.m in Sources */,
 				FA074D2E16331C9E002DC2F5 /* LoginViewController.m in Sources */,
 				FADF88B91635910500608EC8 /* ActivityIndicatorView.m in Sources */,
+				44CC0B1516386B1C0099E39F /* JSONServerConnector.m in Sources */,
+				44CC0B1B163C60FF0099E39F /* Utils.m in Sources */,
+				44CC0B1E163C7F6D0099E39F /* LoginHandler.m in Sources */,
+				440A0ED0163CFA9400E7FB5B /* User.m in Sources */,
+				440A0ED4163D8DC800E7FB5B /* ServerResponseHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

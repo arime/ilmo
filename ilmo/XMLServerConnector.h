@@ -14,7 +14,7 @@
 @property (nonatomic, retain) NSString *sessionId;
 
 +(id) sharedServerConnector;
--(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password;
+-(BOOL) loginWithUser: (NSString*) user andPassword: (NSString*) password withCallback:(void(^)(BOOL))handler;
 -(NSMutableArray*) loadEvents;
 -(BOOL) setMyStatusForEvent: (NSString*) eventId to: (Status) status;
 
