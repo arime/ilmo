@@ -11,6 +11,9 @@
 
 @implementation JSONServerConnector
 
+NSString* LOGIN_URL = @"http://www.osallistujat.com/api-1.0/getUser.php";
+NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
+
 +(id) sharedServerConnector
 {
     static JSONServerConnector *connector = nil;
@@ -28,6 +31,8 @@
 {
     _loginHandler = [[LoginHandler alloc] init];
     [_loginHandler setDelegate:self];
+    _eventsHandler = [[EventsHandler alloc] init];
+    [_eventsHandler setDelegate:self];
     return self;
 }
 
@@ -35,7 +40,7 @@
 {
     NSLog(@"Request login");
     
-    _callback = [handler copy];
+    _loginCallback = [handler copy];
     
     NSLog(@"Account: %@", user);
     NSString *passwordHash = [Utils sha1:password];
@@ -50,30 +55,9 @@
                               loginData, @"loginData",
                               nil];
     
-    NSData* postData = [self postDataWithJSONObject:jsonData];
-
-    NSString *jsonString = [[NSString alloc] initWithData:postData
-                                             encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"POST data: %@", jsonString);
-    
-    NSMutableURLRequest *request =
-        [[NSMutableURLRequest alloc] initWithURL:
-         [NSURL URLWithString:@"http://www.osallistujat.com/api-1.0/getUser.php"]];
-    
-    [request setHTTPMethod:@"POST"];
-    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:_loginHandler];
-    
-    if (connection)
+    if (![self sendPost:jsonData to:LOGIN_URL usingDelegate:_loginHandler])
     {
-        NSLog(@"Connection succeeded");
-    }
-    else
-    {
-        NSLog(@"Connection failed");
+        _loginCallback(NO);
     }
 }
 
@@ -89,12 +73,33 @@
         _user = user;
     }
     
-    _callback(success);
+    _loginCallback(success);
 }
 
 -(void) loadEventsWithCallback: (void(^)(NSMutableArray*)) handler;
 {
     NSLog(@"Request load events");
+    
+    _loadEventsCallback = [handler copy];
+    
+    NSDictionary *loginData = [[NSDictionary alloc] initWithObjectsAndKeys:
+                               _user.sessionId, @"sessionId",
+                               nil];
+    NSDictionary *jsonData = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"symbian", @"agent",
+                              loginData, @"loginData",
+                              nil];
+    
+    if (![self sendPost: jsonData to:EVENTS_URL usingDelegate:_eventsHandler])
+    {
+        _loadEventsCallback(nil);
+    }
+}
+
+- (void)didCompleteLoadEvents:(EventsHandler*)handler withEvents:(NSMutableArray*) events
+{
+    NSLog(@"Load events completed with events: %@", events);
+    _loadEventsCallback(events);
 }
 
 -(void) setStatusForEvent: (NSString*) eventId to: (Status) status withCallback: (void(^)(BOOL)) handler;
@@ -142,6 +147,40 @@
             [output appendFormat:@"=%@&", value];
         }
     }
+}
+
+- (BOOL) sendPost: (NSDictionary*) jsonData to: (NSString*) url usingDelegate: (id) delegate
+{
+    NSData* postData = [self postDataWithJSONObject:jsonData];
+    
+    NSString *jsonString =
+        [[NSString alloc] initWithData:postData
+        encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"URL: %@", url);
+    NSLog(@"POST: %@", jsonString);
+    
+    NSMutableURLRequest *request =
+    [[NSMutableURLRequest alloc] initWithURL:
+     [NSURL URLWithString:url]];
+    
+    [request setHTTPMethod:@"POST"];
+    [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
+    
+    if (connection)
+    {
+        NSLog(@"Connection succeeded");
+        return YES;
+    }
+    else
+    {
+        NSLog(@"Connection failed");
+        return NO;
+    }
+
 }
 
 @end

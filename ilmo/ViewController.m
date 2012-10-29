@@ -117,16 +117,14 @@
 {
     [_activity startAnimatingOverView:self.view];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        [_serverConnector loadEventsWithCallback:^(NSMutableArray *events){
-            NSLog(@"Loaded events: %d", [events count]);
-            _events = events;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_eventTable reloadData];
-                [_activity stopAnimating];
-            });
-        }];
-    });
+    [_serverConnector loadEventsWithCallback:^(NSMutableArray *events){
+        NSLog(@"Loaded events: %d", [events count]);
+        _events = events;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_eventTable reloadData];
+            [_activity stopAnimating];
+        });
+    }];
 }
 
 #pragma mark - Tableview Delegate methods

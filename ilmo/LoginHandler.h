@@ -14,7 +14,7 @@
 
 @end
 
-@interface NSObject(ServerResponseHandlerDelegateMethods)
+@interface NSObject(LoginHandlerDelegateMethods)
 
 - (void)didCompleteLogin:(LoginHandler*)handler withUser:(User*) user;
 

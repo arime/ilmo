@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "Event.h"
 #import "LoginHandler.h"
+#import "EventsHandler.h"
 
 @interface JSONServerConnector : NSObject {
-    NSString* _sessionId;
     LoginHandler* _loginHandler;
+    EventsHandler* _eventsHandler;
     User* _user;
-    void (^_callback)(BOOL success);
+    void (^_loginCallback)(BOOL success);
+    void (^_loadEventsCallback)(NSMutableArray* events);
 }
 
 +(id) sharedServerConnector;
