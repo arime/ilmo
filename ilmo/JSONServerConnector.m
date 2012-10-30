@@ -28,6 +28,7 @@
 NSString* LOGIN_URL = @"http://www.osallistujat.com/api-1.0/getUser.php";
 NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
 NSString* SIGNUP_URL = @"http://www.osallistujat.com/api-1.0/setSignUp.php";
+NSString* AGENT_ID=@"ilmo-iOS";
 
 +(id) sharedServerConnector
 {
@@ -68,7 +69,7 @@ NSString* SIGNUP_URL = @"http://www.osallistujat.com/api-1.0/setSignUp.php";
                                passwordHash, @"password",
                                nil];
     NSDictionary *jsonData = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"symbian", @"agent",
+                              AGENT_ID, @"agent",
                               loginData, @"loginData",
                               nil];
 
@@ -103,7 +104,7 @@ NSString* SIGNUP_URL = @"http://www.osallistujat.com/api-1.0/setSignUp.php";
                                _user.sessionId, @"sessionId",
                                nil];
     NSDictionary *jsonData = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"symbian", @"agent",
+                              AGENT_ID, @"agent",
                               loginData, @"loginData",
                               nil];
 
@@ -132,7 +133,7 @@ NSString* SIGNUP_URL = @"http://www.osallistujat.com/api-1.0/setSignUp.php";
                           [self statusAsString:status], @"statusInt",
                           nil];
     NSDictionary *jsonData = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"symbian", @"agent",
+                              AGENT_ID, @"agent",
                               loginData, @"loginData",
                               data, @"data",
                               nil];
