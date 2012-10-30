@@ -38,9 +38,9 @@
 @synthesize attendingImageView;
 
 const unsigned int CELL_COLOR_DEFAULT = 0xFDFDFD;
-const unsigned int CELL_COLOR_POSITIVE = 0xFBFFF4;
-const unsigned int CELL_COLOR_NEGATIVE = 0xFFFAFB;
-const unsigned int CELL_COLOR_QUESTION = 0xF9FEFF;
+const unsigned int CELL_COLOR_POSITIVE = 0xEAFFE3;
+const unsigned int CELL_COLOR_NEGATIVE = 0xFFE9EA;
+const unsigned int CELL_COLOR_QUESTION = 0xE8EDFF;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
