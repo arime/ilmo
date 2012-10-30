@@ -39,13 +39,13 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
 -(void) loginWithUser:(NSString *)user password:(NSString *)password andCallback:(void(^)(BOOL))handler
 {
     NSLog(@"Request login");
-    
+
     _loginCallback = [handler copy];
-    
+
     NSLog(@"Account: %@", user);
     NSString *passwordHash = [Utils sha1:password];
     NSLog(@"Password hash: %@", passwordHash);
-    
+
     NSDictionary *loginData = [[NSDictionary alloc] initWithObjectsAndKeys:
                                user, @"username",
                                passwordHash, @"password",
@@ -54,34 +54,34 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
                               @"symbian", @"agent",
                               loginData, @"loginData",
                               nil];
-    
+
     if (![self sendPost:jsonData to:LOGIN_URL usingDelegate:_loginHandler])
     {
         _loginCallback(NO);
     }
 }
 
-- (void)didCompleteLogin:(LoginHandler*)handler withUser:(User*)user
+- (void)login:(LoginHandler*)handler didCompleteWithUser:(User*)user
 {
     BOOL success = user != nil;
-    
+
     NSLog(@"Login completed with result: %d", success);
-    
+
     if (user != nil)
     {
         NSLog(@"Session id: %@", user.sessionId);
         _user = user;
     }
-    
+
     _loginCallback(success);
 }
 
 -(void) loadEventsWithCallback: (void(^)(NSMutableArray*)) handler;
 {
     NSLog(@"Request load events");
-    
+
     _loadEventsCallback = [handler copy];
-    
+
     NSDictionary *loginData = [[NSDictionary alloc] initWithObjectsAndKeys:
                                _user.sessionId, @"sessionId",
                                nil];
@@ -89,14 +89,14 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
                               @"symbian", @"agent",
                               loginData, @"loginData",
                               nil];
-    
+
     if (![self sendPost: jsonData to:EVENTS_URL usingDelegate:_eventsHandler])
     {
         _loadEventsCallback(nil);
     }
 }
 
-- (void)didCompleteLoadEvents:(EventsHandler*)handler withEvents:(NSMutableArray*) events
+- (void)loadEvents:(EventsHandler*)handler didCompleteWithEvents:(NSMutableArray*) events
 {
     NSLog(@"Load events completed with events: %@", events);
     _loadEventsCallback(events);
@@ -152,24 +152,24 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
 - (BOOL) sendPost: (NSDictionary*) jsonData to: (NSString*) url usingDelegate: (id) delegate
 {
     NSData* postData = [self postDataWithJSONObject:jsonData];
-    
+
     NSString *jsonString =
         [[NSString alloc] initWithData:postData
         encoding:NSUTF8StringEncoding];
-    
+
     NSLog(@"URL: %@", url);
     NSLog(@"POST: %@", jsonString);
-    
+
     NSMutableURLRequest *request =
     [[NSMutableURLRequest alloc] initWithURL:
      [NSURL URLWithString:url]];
-    
+
     [request setHTTPMethod:@"POST"];
     [request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
-    
+
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:delegate];
-    
+
     if (connection)
     {
         NSLog(@"Connection succeeded");

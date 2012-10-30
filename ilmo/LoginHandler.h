@@ -16,6 +16,6 @@
 
 @interface NSObject(LoginHandlerDelegateMethods)
 
-- (void)didCompleteLogin:(LoginHandler*)handler withUser:(User*) user;
+- (void)login:(LoginHandler*)handler didCompleteWithUser:(User*)user;
 
 @end

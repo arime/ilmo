@@ -15,7 +15,7 @@
   didFailWithError:(NSError *)error
 {
     [super connection:connection didFailWithError:error];
-    [[super delegate] didCompleteLogin:self withUser:nil];
+    [[super delegate] login:self didCompleteWithUser:nil];
 
 }
 
@@ -28,12 +28,12 @@
                           JSONObjectWithData:[super receivedData]
                           options:kNilOptions
                           error:&error];
-    
+
     NSLog(@"%@", json);
-    
+
     NSNumber* status = [json objectForKey:@"status"];
     User* user = nil;
-    
+
     if ([status intValue] == 1)
     {
         NSDictionary* userData = [json objectForKey:@"data"];
@@ -42,8 +42,8 @@
     else
     {
     }
-    
-    [[super delegate] didCompleteLogin:self withUser:user];
+
+    [[super delegate] login:self didCompleteWithUser:user];
 }
 
 @end

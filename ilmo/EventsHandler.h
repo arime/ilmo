@@ -7,7 +7,6 @@
 //
 
 #import "ServerResponseHandler.h"
-#import "User.h"
 #import <Foundation/Foundation.h>
 
 @interface EventsHandler : ServerResponseHandler
@@ -16,6 +15,6 @@
 
 @interface NSObject(EventsHandlerDelegateMethods)
 
-- (void)didCompleteLoadEvents:(EventsHandler*)handler withEvents:(NSMutableArray*) events;
+- (void)loadEvents:(EventsHandler*)handler didCompleteWithEvents:(NSMutableArray*)events;
 
 @end
