@@ -10,6 +10,7 @@
 		440A0ED0163CFA9400E7FB5B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A0ECF163CFA9400E7FB5B /* User.m */; };
 		440A0ED4163D8DC800E7FB5B /* ServerResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A0ED3163D8DC800E7FB5B /* ServerResponseHandler.m */; };
 		440A0EDB163F0D5800E7FB5B /* EventsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A0EDA163F0D5800E7FB5B /* EventsHandler.m */; };
+		440A0EDF1640712E00E7FB5B /* SignUpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 440A0EDE1640712D00E7FB5B /* SignUpHandler.m */; };
 		44A56AA51632C97B000825F0 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44A56AA41632C97B000825F0 /* Settings.bundle */; };
 		44CC0B051636F2B60099E39F /* attendees.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B041636F2B60099E39F /* attendees.png */; };
 		44CC0B0B1636F3D10099E39F /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 44CC0B071636F3D10099E39F /* default.png */; };
@@ -69,6 +70,8 @@
 		440A0ED3163D8DC800E7FB5B /* ServerResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerResponseHandler.m; sourceTree = "<group>"; };
 		440A0ED9163F0D5800E7FB5B /* EventsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsHandler.h; sourceTree = "<group>"; };
 		440A0EDA163F0D5800E7FB5B /* EventsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsHandler.m; sourceTree = "<group>"; };
+		440A0EDD1640712D00E7FB5B /* SignUpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpHandler.h; sourceTree = "<group>"; };
+		440A0EDE1640712D00E7FB5B /* SignUpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpHandler.m; sourceTree = "<group>"; };
 		44A56AA41632C97B000825F0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		44CC0B041636F2B60099E39F /* attendees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendees.png; sourceTree = "<group>"; };
 		44CC0B071636F3D10099E39F /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
@@ -220,6 +223,8 @@
 				440A0ED3163D8DC800E7FB5B /* ServerResponseHandler.m */,
 				440A0ED9163F0D5800E7FB5B /* EventsHandler.h */,
 				440A0EDA163F0D5800E7FB5B /* EventsHandler.m */,
+				440A0EDD1640712D00E7FB5B /* SignUpHandler.h */,
+				440A0EDE1640712D00E7FB5B /* SignUpHandler.m */,
 			);
 			path = ilmo;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				440A0ED0163CFA9400E7FB5B /* User.m in Sources */,
 				440A0ED4163D8DC800E7FB5B /* ServerResponseHandler.m in Sources */,
 				440A0EDB163F0D5800E7FB5B /* EventsHandler.m in Sources */,
+				440A0EDF1640712E00E7FB5B /* SignUpHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

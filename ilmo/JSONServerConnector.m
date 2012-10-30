@@ -7,12 +7,27 @@
 //
 
 #import "JSONServerConnector.h"
+#import "LoginHandler.h"
+#import "EventsHandler.h"
+#import "SignUpHandler.h"
 #import "Utils.h"
+
+@interface JSONServerConnector () {
+    LoginHandler* _loginHandler;
+    EventsHandler* _eventsHandler;
+    SignUpHandler* _signupHandler;
+    User* _user;
+    void (^_loginCallback)(BOOL success);
+    void (^_loadEventsCallback)(NSMutableArray* events);
+    void (^_setStatusCallback)(BOOL success);
+}
+@end
 
 @implementation JSONServerConnector
 
 NSString* LOGIN_URL = @"http://www.osallistujat.com/api-1.0/getUser.php";
 NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
+NSString* SIGNUP_URL = @"http://www.osallistujat.com/api-1.0/setSignUp.php";
 
 +(id) sharedServerConnector
 {
@@ -33,6 +48,8 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
     [_loginHandler setDelegate:self];
     _eventsHandler = [[EventsHandler alloc] init];
     [_eventsHandler setDelegate:self];
+    _signupHandler = [[SignUpHandler alloc] init];
+    [_signupHandler setDelegate:self];
     return self;
 }
 
@@ -105,6 +122,31 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
 -(void) setStatusForEvent: (NSString*) eventId to: (Status) status withCallback: (void(^)(BOOL)) handler;
 {
     NSLog(@"Request set %@ to %d", eventId, (int)status);
+    _setStatusCallback = [handler copy];
+    
+    NSDictionary *loginData = [[NSDictionary alloc] initWithObjectsAndKeys:
+                               _user.sessionId, @"sessionId",
+                               nil];
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          eventId, @"eventId",
+                          [self statusAsString:status], @"statusInt",
+                          nil];
+    NSDictionary *jsonData = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"symbian", @"agent",
+                              loginData, @"loginData",
+                              data, @"data",
+                              nil];
+    
+    if (![self sendPost: jsonData to:SIGNUP_URL usingDelegate:_signupHandler])
+    {
+        _setStatusCallback(NO);
+    }
+}
+
+- (void)signUp:(SignUpHandler*)handler didCompleteWithResult:(BOOL)success
+{
+    NSLog(@"Sign up completed with result %d", success);
+    _setStatusCallback(success);
 }
 
 - (NSData*)postDataWithJSONObject:(NSDictionary*)jsonData
@@ -119,6 +161,7 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
 
     // example post data:
     // agent=ios&loginData[username]=test&loginData[password]=hash
+    NSLog(@"%@", jsonData);
     NSMutableString* outputString = [[NSMutableString alloc] init];
     [self parse:jsonData into:outputString withPrefix:nil];
     [outputString deleteCharactersInRange:NSMakeRange([outputString length] - 1, 1)];
@@ -181,6 +224,19 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
         return NO;
     }
 
+}
+
+-(NSString*) statusAsString:(Status) status
+{
+    switch (status) {
+        case ATTENDING_YES:
+            return @"0";
+        case ATTENDING_UNDECIDED:
+            return @"1";
+        case ATTENDING_NO:
+        default:
+            return @"2";
+    }
 }
 
 @end

@@ -179,16 +179,21 @@
     NSLog(@"Request set status for event %@ to %d", [event id], status);
     [_activity startAnimatingOverView:self.view];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        
-        [_serverConnector setStatusForEvent:event.id to:status withCallback:^(BOOL result) {
-            NSLog(@"Set status result: %d", result);
-        }];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Set status complete");
-            [_activity stopAnimating];
-        });
-    });
+    [_serverConnector setStatusForEvent:event.id to:status withCallback:^(BOOL result) {
+        NSLog(@"Set status result: %d", result);
+        if (result)
+        {
+            [self loadEvents];
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Set status complete");
+                [_activity stopAnimating];
+            });
+        }
+    }];
+
 }
 
 @end
