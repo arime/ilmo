@@ -11,5 +11,6 @@
 @interface Utils : NSObject
 
 +(NSString*) sha1:(NSString*)input;
++(id) formattedObjectForKey:(NSString*)key from:(NSDictionary*)dict;
 
 @end

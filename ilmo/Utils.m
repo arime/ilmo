@@ -28,4 +28,9 @@
     return output;
 }
 
++(id) formattedObjectForKey:(NSString*)key from:(NSDictionary*)dict
+{
+    return [dict objectForKey:key];
+}
+
 @end

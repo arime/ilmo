@@ -7,6 +7,7 @@
 //
 
 #import "Event.h"
+#import "Utils.h"
 
 @interface Event ()
 {
@@ -40,13 +41,12 @@
     [_timeFormatter setLocale:[NSLocale currentLocale]];
 
     _id = [data objectForKey:@"eventId"];
-    _title = [data objectForKey:@"title"];
-    _location = [data objectForKey:@"location"];
+    _title = [Utils formattedObjectForKey:@"title" from:data];
+    _location = [Utils formattedObjectForKey:@"location" from:data];
     _status = [data objectForKey:@"signUps"];
     _mystatus = [[data objectForKey:@"myStatusInt"] intValue];
-    NSString* startTimeString = [data objectForKey:@"startTs"];
-    int startTimeInt = [startTimeString intValue];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:startTimeInt];
+    NSString* startTimeString = [Utils formattedObjectForKey:@"startTs" from:data];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[startTimeString intValue]];
     _date = [_dateFormatter stringFromDate:date];
     _time = [_timeFormatter stringFromDate:date];;
     return self;
