@@ -98,7 +98,7 @@ NSString* EVENTS_URL = @"http://www.osallistujat.com/api-1.0/getEvents.php";
 
 - (void)loadEvents:(EventsHandler*)handler didCompleteWithEvents:(NSMutableArray*) events
 {
-    NSLog(@"Load events completed with events: %@", events);
+    NSLog(@"Load events completed with events: %d", [events count]);
     _loadEventsCallback(events);
 }
 

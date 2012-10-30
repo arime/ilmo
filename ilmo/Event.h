@@ -29,4 +29,6 @@ enum Status : NSInteger {
 @property (nonatomic) Status mystatus;
 @property (nonatomic, retain) NSString *mymessage;
 
+-(id) initWithJSON: (NSDictionary*) data;
+
 @end

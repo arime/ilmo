@@ -7,6 +7,7 @@
 //
 
 #import "EventsHandler.h"
+#import "Event.h"
 
 @implementation EventsHandler
 
@@ -30,20 +31,25 @@
 
     NSLog(@"%@", json);
 
-    [[super delegate] loadEvents:self didCompleteWithEvents:nil];
-/*
     NSNumber* status = [json objectForKey:@"status"];
-    User* user = nil;
+    NSMutableArray* events = nil;
 
     if ([status intValue] == 1)
     {
-    NSDictionary* userData = [json objectForKey:@"data"];
-    user = [[User alloc] initWithJSON:userData];
+        events = [[NSMutableArray alloc] init];
+        NSArray* eventsData = [json objectForKey:@"data"];
+        NSEnumerator *e = [eventsData objectEnumerator];
+        id object;
+        while (object = [e nextObject])
+        {
+            NSDictionary* eventData = (NSDictionary*)object;
+            Event* event = [[Event alloc] initWithJSON:eventData];
+            [events addObject:event];
+        }
     }
-    else
-    {
-    }
-*/
+
+    [[super delegate] loadEvents:self didCompleteWithEvents:events];
+
 }
 
 @end
